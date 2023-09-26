@@ -1,0 +1,6 @@
+# Getting Started
+
+```
+./gradlew bootRun
+```
+
