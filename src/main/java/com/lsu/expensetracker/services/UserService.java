@@ -35,7 +35,7 @@ public class UserService {
     	List<User> users = repository.findByEmail(user.getEmail());
     	if (users.size() > 0) {
     		String pwd = users.get(0).getPassword();
-    		if (pwd == user.getPassword()) {
+    		if (pwd.equals(user.getPassword().strip())) {
     			return true;
     		}
     	}
