@@ -30,5 +30,16 @@ public class UserService {
     public void deleteUser(Long id) {
         repository.deleteById(id);
     }
+    
+    public boolean login(User user) {
+    	List<User> users = repository.findByEmail(user.getEmail());
+    	if (users.size() > 0) {
+    		String pwd = users.get(0).getPassword();
+    		if (pwd == user.getPassword()) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
 
 }

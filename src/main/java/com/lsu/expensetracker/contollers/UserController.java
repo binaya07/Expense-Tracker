@@ -19,35 +19,43 @@ import com.lsu.expensetracker.models.User;
 import com.lsu.expensetracker.services.UserService;
 
 @Controller
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 public class UserController {
 
-//	@Autowired
-//    private UserService service;
+	@Autowired
+    private UserService service;
 
 //    @GetMapping
 //    public List<User> getAllUsers() {
 //        return service.getAllUsers();
 //    }
 
-//    @GetMapping("/{id}")
-//    public User getUserById(@PathVariable Long id) {
-//        return service.getUserById(id).orElse(null);
-//    }
-//
-//    @PostMapping
-//    public User saveUser(@RequestBody User User) {
-//        return service.saveUser(User);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public User updateUser(@PathVariable Long id, @RequestBody User User) {
-//        if (service.getUserById(id).isPresent()) {
-//            return service.saveUser(User);
-//        }
-//        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.");
-//    }
-//
+	@PostMapping("/login")
+	public User login(@RequestBody User user) {
+        if (service.login(user)) {
+        	return user;
+        }
+        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Login failed.");
+    }
+	
+    @GetMapping("/users/{id}")
+    public User getUserById(@PathVariable Long id) {
+        return service.getUserById(id).orElse(null);
+    }
+
+    @PostMapping("/users")
+    public User saveUser(@RequestBody User user) {
+        return service.saveUser(user);
+    }
+
+    @PutMapping("/users/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User user) {
+        if (service.getUserById(id).isPresent()) {
+            return service.saveUser(user);
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.");
+    }
+
 //    @DeleteMapping("/{id}")
 //    public void deleteUser(@PathVariable Long id) {
 //        service.deleteUser(id);
