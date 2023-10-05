@@ -27,8 +27,9 @@ public class UserController {
 
 	@PostMapping("/login")
 	public User login(@RequestBody User user) {
-		if (service.login(user)) {
-			return user;
+		User authenticatedUser = service.login(user);
+		if (authenticatedUser != null) {
+			return authenticatedUser;
 		}
 		throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Login failed.");
 	}

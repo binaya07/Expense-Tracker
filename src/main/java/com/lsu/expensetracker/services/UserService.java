@@ -31,15 +31,14 @@ public class UserService {
         repository.deleteById(id);
     }
     
-    public boolean login(User user) {
+    public User login(User user) {
     	List<User> users = repository.findByEmail(user.getEmail());
     	if (users.size() > 0) {
     		String pwd = users.get(0).getPassword();
     		if (pwd.equals(user.getPassword().strip())) {
-    			return true;
-    		}
+    			return users.get(0);   		}
     	}
-    	return false;
+    	return null;
     }
 
 }

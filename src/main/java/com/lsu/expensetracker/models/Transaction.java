@@ -21,7 +21,7 @@ public class Transaction {
     private String category;
     private String type;
     private LocalDate date;
-    private String userId;
+    private Long userId;
     
 	public Transaction() {
 	}
@@ -69,11 +69,11 @@ public class Transaction {
 		this.date = date;
 	}
 
-	public String getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}    
 	

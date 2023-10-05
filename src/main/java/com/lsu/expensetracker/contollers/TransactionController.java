@@ -25,9 +25,9 @@ public class TransactionController {
 	@Autowired
     private TransactionService service;
 
-    @GetMapping
-    public List<Transaction> getAllTransactions() {
-        return service.getAllTransactions();
+    @GetMapping("/user/{userId}")
+    public List<Transaction> getUserTransactions(@PathVariable Long userId) {
+        return service.getUserTransactions(userId);
     }
 
     @GetMapping("/{id}")

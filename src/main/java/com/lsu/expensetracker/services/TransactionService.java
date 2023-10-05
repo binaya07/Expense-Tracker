@@ -15,8 +15,8 @@ public class TransactionService {
     @Autowired
     private TransactionRepository repository;
 
-    public List<Transaction> getAllTransactions() {
-        return repository.findAll();
+    public List<Transaction> getUserTransactions(Long userId) {
+        return repository.findByUserId(userId);
     }
 
     public Optional<Transaction> getTransactionById(Long id) {
